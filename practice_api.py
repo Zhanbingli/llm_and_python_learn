@@ -155,4 +155,39 @@ if __name__ == "__main__":
             break
         if user_input:
             run_agent(user_input)
-            
+
+
+class learn_agent:
+    def __int__(self, quest:str, ai:str, agent:str):
+        self.ai = ai
+        self.agent = agent
+
+    def ai_agent(self, learn:str, serach:str):
+        uil = "https://www.google.com"
+        response = requests.get(uil)
+        data = response.json()
+        search = []
+        for i in data:
+            if i == "ai_agent":
+                search.append(i)
+                print(f'{i}')
+
+            else:
+                print("not data")
+        return search
+
+    def action(self):
+
+def is_leap(year):
+    r = False
+    if year % 4 == 0:
+        r = True
+        if year % 100 == 0:
+            if year % 400 != 0:
+                r = False
+    return r
+
+
+
+
+
