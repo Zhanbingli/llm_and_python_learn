@@ -121,4 +121,24 @@ class toolchaion:
                     return False
 
         return True
+
+
+def learn_english(world):
+    world = []
+    if world == 'english':
+        for i in range(1:10):
+            print(f"english is very import{i}")
+            i += 1
+    else:
+        for i in world:
+            data = world.append(i)
+            print(f"data = {data}")
+
+data = learn_english('english')
+print(data)
+
+result = {}
+
+for name, model in models.items():
+    model.fit(X_train_scaled, Y_train)
     
