@@ -9,16 +9,21 @@ scikit-learn 快速参考指南
 
 # 从CSV加载数据
 import pandas as pd
-df = pd.read_csv('data.csv')
-X = df.drop('target', axis=1)  # 特征
-y = df['target']                # 目标变量
-
-# 分割数据
+from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42, stratify=y  # stratify保持类别比例
+    X, y,
+    test_size=0.2,      # 20%作为测试集
+    random_state=42     # 固定随机种子,确保可复现
+    # ← 回归问题不使用stratify!
 )
 
+print(f"\n训练集大小: {X_train.shape}")
+print(f"测试集大小: {X_test.shape}")
+
+# ============================================================================
+# 步骤6: (可选) 特征缩放
+# ============================================================================
 # ============================================================================
 # 2. 数据预处理
 # ============================================================================
@@ -40,12 +45,12 @@ imputer = SimpleImputer(strategy='mean')  # 'median', 'most_frequent', 'constant
 X_imputed = imputer.fit_transform(X)
 
 # One-Hot编码（类别变量）
-from sklearn.preprocessing import OneHotEncoder
-encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
-X_encoded = encoder.fit_transform(X_categorical)
+# from sklearn.preprocessing import OneHotEncoder
+# encoder = OneHotEncoder(sparse=False, handle_unknown='ignore')
+# X_encoded = encoder.fit_transform(X_categorical)
 
 # 使用pandas的get_dummies更简单
-X_encoded = pd.get_dummies(X, columns=['category_col'], drop_first=True)
+# X_encoded = pd.get_dummies(X, columns=['category_col'], drop_first=True)
 
 # ============================================================================
 # 3. 回归模型
@@ -560,3 +565,4 @@ model = GradientBoostingClassifier(
 """
 
 print("scikit-learn快速参考指南 - 完成！")
+
