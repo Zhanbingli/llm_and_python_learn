@@ -1,3 +1,5 @@
+from typing import List
+
 class Solution1:
     def removeElement(self, nums: List[int], val: int) -> int:
         slow = 0
@@ -54,3 +56,7 @@ class Solution:
                 if mapping[top_element] != char:
                     return False
         return not stack
+
+s = "({[]})"
+project = Solution()
+print(project.isVaild(s))
